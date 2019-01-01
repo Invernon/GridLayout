@@ -2,33 +2,224 @@
 
 body{
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
 }
 
-.grid-container{
+.grid-layout{
     display: grid;
-    grid-template: 100px 1fr 150px / 200px 1fr ;
-    grid-template-areas: 'header header' 
-                        'left contenido'
-                        'footer footer';
+    grid-template: 100px 1fr / 1fr ;
+    grid-template-areas: 'header' 
+                         'contenido';
     grid-gap: 10px;
-    height: calc(100vh - 20px);
+    /* min-height: calc(100vh); */
 }
 
 .header{
-    grid-area: header
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 4px black;
+    padding: 10px;
+    background: #fdfdfd;
 }
-.left{
-    grid-area: left
+
+.header h1{
+    margin-top: 10px; 
+    margin-bottom: 5px; 
 }
-.contenido{
-    grid-area: contenido
+
+.header ul.header-button{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
-.footer{
-    grid-area: footer
+
+ul.header-button li{
+    background: lightgrey;
+    margin-left: 10px;
+    min-width: 100px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 300ms linear;
+    box-shadow: 0 0 2px darkslategrey;
+}
+
+ul.header-button li:hover , ul.header-button li.active{
+    background: grey;
+    color:white;
+}
+
+ul.header-button li a{
+    text-decoration: none;
+    color:inherit!important;
+    width: 100%;
+    text-align: center;
+}
+
+.button-text{
+    font-family: Oswald;
+    font-weight: bold; 
+}
+
+/* FIN DE LAYOUT */
+
+/* INSTAGRAM LAYOUT */
+
+.instagram-layout{
+    grid-area: contenido;
+    display:grid;
+    grid-gap: 28px;
+    grid-template-columns: repeat( 3 , minmax(100px , 293px) );
+    justify-content: center;
+    margin-bottom: 1pc;
+}
+
+@media screen and (max-width: 768px) {
+    .instagram-layout {
+      grid-gap: 3px;
+    }
+  }
+
+.instagram-layout .post{
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+
+.post .post-image {
+    margin: 0;
+}
+
+.post .post-image img{
+    object-fit: cover;
+    width: 100%;
+    vertical-align: top;
+}
+
+.post .post-overlay{
+    position: absolute;
+    background: rgba(0, 0, 0, .4);
+    left:0;
+    right: 0;
+    top:0;
+    bottom:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    visibility: hidden;
+    opacity:0;
+    transition: 500ms ease-in-out;
+}
+
+.post:hover .post-overlay{
+    visibility: visible;
+    opacity: 1;
+}
+
+.post-likes,
+.post-comments{
+    width: 80px;
+    margin: 5px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+
+/* FIN INSTAGRAM LAYOUT */
+
+.pinterest-layout{
+    display:grid;
+    grid-template-columns: repeat( auto-fill , 250px);
+    grid-auto-rows: 135px;
+    grid-gap: 10px;
+    justify-content: center;
 }
 
 .item{
-    background:lightblue;
-    border:10px;
-    border: 1px solid lightcoral;
+    padding: 10px;
+    position: relative;
+    background: #fdfdfd;
+    padding-bottom: 20px;
+    cursor:zoom-in;
 }
+
+.item .options{
+    display: flex;
+    justify-content: flex-end;
+    color:gray;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.item .options:hover{
+    border-radius: 100%;
+}
+
+.item .item-overlay{
+    background: rgba(0, 0, 0, .05);
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 5px;
+    transition: 300ms linear;
+    z-index: 0;
+}
+
+.item:hover .item-overlay{
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.item img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.level-1{
+    grid-row-end: span 4;
+}
+
+.level-2{
+    grid-row-end: span 3;
+}
+
+.level-3{
+    grid-row-end: span 2;
+}
+
+/* FIN DE PINTEREST */
+
+.platzi-layout{
+    display: flex;
+    justify-content: center;
+}
+
+.platzi-layout figure{
+    width: 100%;
+    display: inherit;
+    justify-content: inherit;
+}
+
+.platzi-layout figure img{
+    object-fit: contain;
+    width: 100%;
+}
+
